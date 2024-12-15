@@ -31,7 +31,6 @@ function Convert() {
           <input ref={convertAmount} type="text" className="border-2 w-[300px] border-gray-600 rounded-md py-[7px] px-5" />
           <select
             ref={convertFrom}
-            class="form-select"
             className="absolute right-1 top-1 bottom-1 border-l-[2px] border-gray-900 border-r-none w-full max-w-[90px] outline-none"
             aria-label="Default select example"
           >
@@ -48,7 +47,6 @@ function Convert() {
         <img src={RightArrow} alt="right arrow" width={30} height={30} />
         <select
           ref={convertTo}
-          class="form-select"
           className="border-2 border-gray-600 rounded-md py-[7px] px-5"
           aria-label="Default select example"
         >
@@ -62,7 +60,7 @@ function Convert() {
           ))}
         </select>
         <button onClick={() => convertFn(convertAmount?.current.value, convertFrom?.current.value, convertTo?.current.value)} className="flex items-center justify-center py-1 px-6 bg-green-600 rounded-md text-white text-[20px]">Convert</button>
-        <input className="border-2 border-gray-600 rounded-md py-[7px] px-5"  value={`${new Intl.NumberFormat().format(convertValue)}`}/>
+        <input readOnly className="border-2 border-gray-600 rounded-md py-[7px] px-5"  value={`${new Intl.NumberFormat().format(convertValue)}`}/>
       </div>
     </div>
   );
