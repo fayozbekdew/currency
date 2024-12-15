@@ -55,6 +55,7 @@ function Header() {
         })
         .catch();
     }
+    updateOncePerDay();
     localStorage.setItem("mainCurrens", JSON.stringify(mainCurrensState));
     oldData = JSON.parse(localStorage.getItem("mainCurrens"));
   }
