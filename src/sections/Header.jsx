@@ -3,7 +3,6 @@ import CurrencyHeader from "../components/CurrencyHeader";
 
 function Header() {
   const oldData = JSON.parse(localStorage.getItem("mainCurrens"));
-  // if you first time open app then oldData will be null
   if (oldData == null) {
     const mainCurrensState = [
       new Date().toISOString().slice(0, 10),
@@ -32,32 +31,34 @@ function Header() {
         difference: 0,
       },
     ];
-    fetch(
-      "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/USD"
-    )
-      .then((data) => data.json())
-      .then((data) => {
-        mainCurrensState[1].newPrice = data.conversion_rates.UZS;
-        return fetch(
+    async function updateOncePerDay() {
+      await fetch(
+        "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/USD"
+      )
+        .then((data) => data.json())
+        .then((data) => {
+          mainCurrensState[1].newPrice = data.conversion_rates.UZS;
+        })
+        await fetch(
           "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/RUB"
-        );
-      })
-      .then((data) => data.json())
-      .then((data) => {
-        mainCurrensState[2].newPrice = data.conversion_rates.UZS;
-        return fetch(
+        )
+        .then((data) => data.json())
+        .then((data) => {
+          mainCurrensState[2].newPrice = data.conversion_rates.UZS;
+        })
+        await fetch(
           "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/EUR"
-        );
-      })
-      .then((data) => data.json())
-      .then((data) => {
-        mainCurrensState[3].newPrice = data.conversion_rates.UZS;
-      })
-      .catch();
+        )
+        .then((data) => data.json())
+        .then((data) => {
+          mainCurrensState[3].newPrice = data.conversion_rates.UZS;
+        })
+        .catch();
+    }
     localStorage.setItem("mainCurrens", JSON.stringify(mainCurrensState));
     oldData = JSON.parse(localStorage.getItem("mainCurrens"));
   }
-  function updateOncePerDay() {
+  async function updateOncePerDay() {
     const mainCurrensState = [
       new Date().toISOString().slice(0, 10),
       {
@@ -90,23 +91,25 @@ function Header() {
       mainCurrensState[1].oldPrice = oldData[1].newPrice;
       mainCurrensState[2].oldPrice = oldData[2].newPrice;
       mainCurrensState[3].oldPrice = oldData[3].newPrice;
-      fetch(
+      await fetch(
         "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/USD"
       )
         .then((data) => data.json())
         .then((data) => {
           mainCurrensState[1].newPrice = data.conversion_rates.UZS;
-          return fetch(
-            "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/RUB"
-          );
         })
+        .catch(console.log);
+      await fetch(
+        "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/RUB"
+      )
         .then((data) => data.json())
         .then((data) => {
           mainCurrensState[2].newPrice = data.conversion_rates.UZS;
-          return fetch(
-            "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/EUR"
-          );
         })
+        .catch(console.log);
+      await fetch(
+        "https://v6.exchangerate-api.com/v6/e96b70868ed6726b237fe826/latest/EUR"
+      )
         .then((data) => data.json())
         .then((data) => {
           mainCurrensState[3].newPrice = data.conversion_rates.UZS;
