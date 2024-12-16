@@ -9,10 +9,8 @@ import { FaMoneyBillAlt } from 'react-icons/fa';
 function Sidebar() {
   const navigation = [
     { link: "/", icon: <FaHome />, title: "Home" },
-    // { link: "/currency", icon: HomeIcon, title: "Realtime Currency" },
     { link: "/transaction", icon: <AiOutlineTransaction />, title: "My transaction" },
     { link: "/convert", icon: <SiConvertio />, title: "Convert" },
-    { link: "/myProfile", icon: <CgProfile />, title: "My profile" },
   ];
   return (
     <div className="flex w-full max-w-[300px] min-h-screen fixed top-0 z-10 bg-gray-100 border-r-2 border-gray-700 flex-col">

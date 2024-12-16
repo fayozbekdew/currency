@@ -26,8 +26,9 @@ function Convert() {
       .then((data) => data.json())
       .then((data) => setConvertValue(data.conversion_rates[convertTo] * convertAmount).toFixed(2))
       .catch();
-      
-      localStorage.setItem('convertValues', JSON.stringify([{id: crypto.randomUUID(), to: convertTo, from: convertFrom, amount: convertAmount, value: convertValue},...oldValues]))
+      const newValue = [{id: crypto.randomUUID(), to: convertTo, from: convertFrom, amount: convertAmount, value: convertValue},...oldValues]
+      localStorage.setItem('convertValues', JSON.stringify(newValue))
+      setOldConversations(newValue)
   }
   const handleDelete = useCallback((id) => {
     const updatedCurrency = oldValues.filter((currency) => currency.id !== id);
