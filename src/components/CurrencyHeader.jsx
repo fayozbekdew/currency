@@ -23,12 +23,12 @@ const CurrencyHeader = ({
         <div>
           <span>Today Price: </span>
           <span className={`font-bold ${priceStateColor}`}>
-            ${newPrice} {priceArrow}
+            {newPrice.toFixed(2)} {priceArrow}
           </span>
         </div>
       </div>
       <div className="text-sm text-gray-600">
-        Difference: <span className="font-semibold">{difference}</span>
+        Difference: <span className="font-semibold">{difference.toFixed(2)}</span>
       </div>
     </div>
   );
