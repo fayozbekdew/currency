@@ -23,8 +23,7 @@ ChartJS.register(
 );
 
 function Home() {
-  const transactions = 
-    JSON.parse(localStorage.getItem("transactions")) || []
+  const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
   const { income, cost, balance } = useMemo(() => {
     const income = transactions
@@ -60,7 +59,6 @@ function Home() {
     }));
   }, [transactions]);
 
- 
   const barChartData = {
     labels: ["Income", "Expencese"],
     datasets: [
@@ -96,7 +94,6 @@ function Home() {
           <h3 className="font-bold text-[20px] mb-2">Profit</h3>
           <Doughnut data={doughnutData} />
         </span>
-
         <span className="w-1 bg-slate-400"></span>
         <span className="w-1/2 p-14 text-center">
           <h3 className="font-bold text-[20px] mb-2">Expense Categories</h3>

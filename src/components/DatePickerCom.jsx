@@ -7,10 +7,12 @@ function DatePickerCom({ setTransactions }) {
   const [startDate, setStartDate] = useState('');
   function filterByDate(date) {
     const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-    if(date === 'CLEAR'){ 
+    if(date === 'CLEAR' ){ 
       setStartDate('')
       setTransactions(transactions);
+      return
     }
+    if(date == '') return
     const filteredTransactions = transactions.filter((el) => el.date === date);
     setTransactions(filteredTransactions);
   }
@@ -20,6 +22,7 @@ function DatePickerCom({ setTransactions }) {
   return (
     <div className="border border-gray-300 rounded-md relative p-2">
       <DatePicker
+        placeholderText="Filter by date"
         className="outline-none"
         selected={startDate || ""}
         onChange={(date) => setStartDate(date.toISOString().slice(0, 10))}
