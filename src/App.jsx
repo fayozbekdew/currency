@@ -2,8 +2,8 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
 import Home from "./pages/Home";
+import Transactions from "./pages/Transactions";
 const Convert = lazy(() => import("./pages/Convert"));
-const Transactions = lazy(() => import("./pages/Transactions"));
 
 function App() {
   return (
