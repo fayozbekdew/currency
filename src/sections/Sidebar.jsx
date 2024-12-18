@@ -1,8 +1,8 @@
 import { Fragment, useState, useEffect } from "react";
 import NavigationItem from "../components/NavigationItem";
 import { SiConvertio } from "react-icons/si";
-import { FaHome } from "react-icons/fa";
 import { AiOutlineTransaction } from "react-icons/ai";
+import { FcStatistics } from "react-icons/fc";
 
 function Sidebar() {
   const [activePage, setActivePage] = useState(localStorage.getItem("activePage") || "/");
@@ -10,12 +10,12 @@ function Sidebar() {
     localStorage.setItem("activePage", activePage);
   }, [activePage]);
   const navigation = [
-    { link: "/", icon: <FaHome />, title: "Home" },
     {
-      link: "/transaction",
+      link: "/",
       icon: <AiOutlineTransaction />,
       title: "My transaction",
     },
+    { link: "/statistics", icon:<FcStatistics />, title: "Statistics" },
     { link: "/convert", icon: <SiConvertio />, title: "Convert" },
   ];
   return (

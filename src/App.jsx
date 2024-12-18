@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "./layout/MainLayout";
-import Home from "./pages/Home";
 import Transactions from "./pages/Transactions";
 const Convert = lazy(() => import("./pages/Convert"));
+const Statistics = lazy(() => import("./pages/Statistics"));
 
 function App() {
   return (
@@ -11,9 +11,9 @@ function App() {
       <Suspense fallback={<h1>Loading...</h1>}>
         <Routes>
           <Route element={<MainLayout />} path="/">
-            <Route index element={<Home />} />
+            <Route index element={<Transactions />} />
             <Route path="/convert" element={<Convert />} />
-            <Route path="/transaction" element={<Transactions />} />
+            <Route path="/statistics" element={<Statistics />} />
           </Route>
         </Routes>
       </Suspense>
