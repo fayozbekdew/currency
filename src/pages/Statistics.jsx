@@ -22,7 +22,7 @@ ChartJS.register(
   ArcElement
 );
 
-function Home() {
+function Statistics() {
   const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
   const { income, cost, balance } = useMemo(() => {
@@ -108,4 +108,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Statistics;
